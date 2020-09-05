@@ -30,4 +30,4 @@ Ref:
 - https://smartmockups.com/
 - https://codepen.io/sdthornton/pen/wBZdXq #Material Design Box Shadows
 
-
+Contact me at: aizu.ikmal@gmail.com

@@ -175,7 +175,7 @@ export default function Home() {
 						</div>
 					</div>
 					<div className="footer">
-						Sumber laman ini boleh didapati dari sini.<br />Hakcipta data dari laman rasmi www.esolat.gov.my.<br />
+						Sumber laman ini boleh didapati dari <a href="https://github.com/aizuikmal/waktu-solat">sini</a>.<br />Hakcipta data dari laman rasmi www.esolat.gov.my.<br />
 						Pihak kami berusaha untuk memastikan data yang dipaparkan adalah sama seperti laman rasmi E-solat, walaubagaimanapun, ralat data adalah diluar kemampuan jangkaan kami.
 					</div>
 					</>
