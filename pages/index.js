@@ -37,6 +37,8 @@ export default function Home() {
 	const [nextSolatTime, SET_nextSolatTime] = useState(false)
 	const [nextCountdown, SET_nextCountdown] = useState(false)
 
+	const [nextDaySubuh, SET_nextDaySubuh] = useState(false)
+
 	const [styleFile, SET_styleFile] = useState('default')
 	const [changeZonePopup, SET_changeZonePopup] = useState(false)
 	const [changeStylePopup, SET_changeStylePopup] = useState(false)
@@ -56,15 +58,16 @@ export default function Home() {
 		cookies.set('_waktusolat_aizu_my_style', style_code, { path: '/' })
 	}
 
-	const fetch_ws = async (zone_code) => {
-		const loc = `data/timetable/${dayjs().format('YYYY')}/${zone_code}/${dayjs().format('YYYY-MM-DD')}.json`
+	const fetch_ws = async (zone_code, is_tomorrow=false) => {
+		const loc = `data/timetable/${dayjs().format('YYYY')}/${zone_code}/${ is_tomorrow ? dayjs().add(1,'days').format('YYYY-MM-DD') : dayjs().format('YYYY-MM-DD') }.json`
+		console.log('loc',loc)
 		const resp = await fetch(loc)
 		const ws_raw = await resp.json()
 		SET_waktuSolatAll(ws_raw)
 		console.log(loc,ws_raw)
 	}
 
-	const calc_next_waktu_solat = () => {
+	const calc_next_waktu_solat = async () => {
 
 		const current_time = dayjs().format('X')
 			
@@ -80,6 +83,35 @@ export default function Home() {
 				SET_nextCountdown(dayjs.unix(balanced_time).format('HH:mm:ss').split(':'))
 				break
 			}
+		}
+		
+		if(!nextSolatName && !nextSolatTime){
+			SetInterval.clear('calc_next_waktu_solat')
+			//since there is no match on for, then, it is isyak time.
+			//fetch for next day's subuh
+			console.log('nextDaySubuh====',nextDaySubuh)
+			console.log('fetch_next_day subuh')
+			// let nextDaySubuh_buf = false
+			if(!nextDaySubuh){
+				const loc = `data/timetable/${dayjs().format('YYYY')}/${zone}/${dayjs().add(1,'days').format('YYYY-MM-DD')}.json`
+				console.log('loc',loc)
+				const resp = await fetch(loc)
+				const ws_raw = await resp.json()
+				console.log('ws_raw.fajr',ws_raw.fajr)
+				SET_nextDaySubuh(ws_raw.fajr)
+				// nextDaySubuh_buf = ws_raw.fajr
+			}else{
+				// nextDaySubuh_buf = nextDaySubuh
+			}
+
+			// const time_x = dayjs(`${dayjs().format('DD MMM YYYY')} ${nextDaySubuh_buf}`).format('X')
+			// SET_nextSolatName('fajr')
+			// SET_nextSolatTime(time_x)
+			// let balanced_time = (parseInt(time_x - current_time)) - 27000
+			// console.log(`${zone}, ${time_x}`, balanced_time )
+			// SET_nextCountdown(dayjs.unix(balanced_time).format('HH:mm:ss').split(':'))
+
+			// SetInterval.start(calc_next_waktu_solat, 1000, 'calc_next_waktu_solat')
 		}
 
 	}
@@ -98,10 +130,24 @@ export default function Home() {
 	useEffect(() => {	
 		if(waktuSolatAll){
 			calc_next_waktu_solat()
-			SetInterval.clear('test')
-			SetInterval.start(calc_next_waktu_solat, 1000, 'test')
+			SetInterval.clear('calc_next_waktu_solat')
+			SetInterval.start(calc_next_waktu_solat, 1000, 'calc_next_waktu_solat')
 		}
 	},[waktuSolatAll])
+
+	useEffect(() => {	
+		// console.log('nextDaySubuh',nextDaySubuh)
+
+		if(nextDaySubuh){
+			const current_time = dayjs().format('X')
+			const time_x = dayjs(`${dayjs().format('DD MMM YYYY')} ${nextDaySubuh}`).format('X')
+			SET_nextSolatName('fajr')
+			SET_nextSolatTime(time_x)
+			let balanced_time = (parseInt(time_x - current_time)) - 27000
+			console.log(`${zone}, ${time_x}`, balanced_time )
+			SET_nextCountdown(dayjs.unix(balanced_time).format('HH:mm:ss').split(':'))
+		}
+	},[nextDaySubuh])
 
 	return (
 		<div className="container">
