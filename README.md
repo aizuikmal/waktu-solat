@@ -25,6 +25,8 @@ Steps to run on static hosting / S3:
 Ref:
 - https://www.npmjs.com/package/unfetch
 - https://www.npmjs.com/package/dayjs
+- https://github.com/react-ga/react-ga
+- https://www.favicon-generator.org/
 - https://smartmockups.com/
 - https://codepen.io/sdthornton/pen/wBZdXq #Material Design Box Shadows
 
