@@ -7,8 +7,9 @@ import SetInterval from 'set-interval'
 import zones from '../public/data/zones.json'
 import Cookies from 'universal-cookie'
 import ReactGA from 'react-ga';
-ReactGA.initialize('UA-139518627-2');
-ReactGA.pageview(window.location.pathname + window.location.search);
+
+ReactGA.initialize('UA-139518627-2')
+ReactGA.pageview('/')
 
 const advancedFormat = require('dayjs/plugin/advancedFormat')
 dayjs.extend(advancedFormat)
