@@ -8,6 +8,7 @@ import zones from '../public/data/zones.json'
 import Cookies from 'universal-cookie'
 import ReactGA from 'react-ga'
 import { BiBrush } from 'react-icons/bi'
+import { useMutableCallback } from 'react-use-mutable'
 
 ReactGA.initialize('UA-139518627-2')
 ReactGA.pageview('/')
@@ -38,6 +39,7 @@ export default function Home() {
 	const [nextCountdown, SET_nextCountdown] = useState(false)
 
 	const [nextDaySubuh, SET_nextDaySubuh] = useState(false)
+	const [nextDayDate, SET_nextDayDate] = useState(false)
 
 	const [styleFile, SET_styleFile] = useState('default')
 	const [changeZonePopup, SET_changeZonePopup] = useState(false)
@@ -60,61 +62,61 @@ export default function Home() {
 
 	const fetch_ws = async (zone_code, is_tomorrow=false) => {
 		const loc = `data/timetable/${dayjs().format('YYYY')}/${zone_code}/${ is_tomorrow ? dayjs().add(1,'days').format('YYYY-MM-DD') : dayjs().format('YYYY-MM-DD') }.json`
-		console.log('loc',loc)
+		// console.log('loc',loc)
 		const resp = await fetch(loc)
 		const ws_raw = await resp.json()
 		SET_waktuSolatAll(ws_raw)
 		console.log(loc,ws_raw)
 	}
 
-	const calc_next_waktu_solat = async () => {
+	const calc_next_waktu_solat = useMutableCallback(async () => {
 
 		const current_time = dayjs().format('X')
-			
-		let item
-		for(item in waktuSolatAll){
-			const time_x = dayjs(`${dayjs().format('DD MMM YYYY')} ${waktuSolatAll[item]}`).format('X')
-			if(current_time <= time_x){
-				// console.log(item,`${time_x} - ${dayjs.unix(time_x).format('HH:mm:ss')}`)
-				SET_nextSolatName(item)
-				SET_nextSolatTime(time_x)
-				let balanced_time = (parseInt(time_x - current_time)) - 27000
-				console.log(`${zone}, ${time_x}`, balanced_time )
-				SET_nextCountdown(dayjs.unix(balanced_time).format('HH:mm:ss').split(':'))
-				break
-			}
-		}
-		
-		if(!nextSolatName && !nextSolatTime){
-			SetInterval.clear('calc_next_waktu_solat')
-			//since there is no match on for, then, it is isyak time.
-			//fetch for next day's subuh
-			console.log('nextDaySubuh====',nextDaySubuh)
-			console.log('fetch_next_day subuh')
-			// let nextDaySubuh_buf = false
+
+		//check if the current time is past isyak
+		if(current_time >= dayjs(`${dayjs().format('DD MMM YYYY')} ${waktuSolatAll.isha}`).format('X')){
+
+			let nextDaySubuh_buf = false
 			if(!nextDaySubuh){
 				const loc = `data/timetable/${dayjs().format('YYYY')}/${zone}/${dayjs().add(1,'days').format('YYYY-MM-DD')}.json`
-				console.log('loc',loc)
+				console.log('fetch',loc)
 				const resp = await fetch(loc)
 				const ws_raw = await resp.json()
-				console.log('ws_raw.fajr',ws_raw.fajr)
+				console.log(loc,ws_raw)
 				SET_nextDaySubuh(ws_raw.fajr)
-				// nextDaySubuh_buf = ws_raw.fajr
+				nextDaySubuh_buf = ws_raw.fajr
+				SET_nextDayDate(dayjs().add(1,'days').format('YYYY-MM-DD'))
 			}else{
-				// nextDaySubuh_buf = nextDaySubuh
+				nextDaySubuh_buf = nextDaySubuh
+			}
+			
+			const time_x_subuh = dayjs(`${dayjs().format('DD MMM YYYY')} ${nextDaySubuh_buf}`).format('X')
+
+			SET_nextSolatName('fajr')
+			SET_nextSolatTime(time_x_subuh)
+			let balanced_time = (parseInt(time_x_subuh - current_time)) - 27000
+			console.log(`${zone}, ${time_x_subuh}`, balanced_time )
+			SET_nextCountdown(dayjs.unix(balanced_time).format('HH:mm:ss').split(':'))
+
+		}else{
+				
+			let item
+			for(item in waktuSolatAll){
+				const time_x = dayjs(`${dayjs().format('DD MMM YYYY')} ${waktuSolatAll[item]}`).format('X')
+				if(current_time <= time_x){
+					// console.log(item,`${time_x} - ${dayjs.unix(time_x).format('HH:mm:ss')}`)
+					SET_nextSolatName(item)
+					SET_nextSolatTime(time_x)
+					let balanced_time = (parseInt(time_x - current_time)) - 27000
+					console.log(`${zone}, ${time_x}`, balanced_time )
+					SET_nextCountdown(dayjs.unix(balanced_time).format('HH:mm:ss').split(':'))
+					break
+				}
 			}
 
-			// const time_x = dayjs(`${dayjs().format('DD MMM YYYY')} ${nextDaySubuh_buf}`).format('X')
-			// SET_nextSolatName('fajr')
-			// SET_nextSolatTime(time_x)
-			// let balanced_time = (parseInt(time_x - current_time)) - 27000
-			// console.log(`${zone}, ${time_x}`, balanced_time )
-			// SET_nextCountdown(dayjs.unix(balanced_time).format('HH:mm:ss').split(':'))
-
-			// SetInterval.start(calc_next_waktu_solat, 1000, 'calc_next_waktu_solat')
 		}
 
-	}
+	})
 
 	useEffect(() => {
 
@@ -134,20 +136,6 @@ export default function Home() {
 			SetInterval.start(calc_next_waktu_solat, 1000, 'calc_next_waktu_solat')
 		}
 	},[waktuSolatAll])
-
-	useEffect(() => {	
-		// console.log('nextDaySubuh',nextDaySubuh)
-
-		if(nextDaySubuh){
-			const current_time = dayjs().format('X')
-			const time_x = dayjs(`${dayjs().format('DD MMM YYYY')} ${nextDaySubuh}`).format('X')
-			SET_nextSolatName('fajr')
-			SET_nextSolatTime(time_x)
-			let balanced_time = (parseInt(time_x - current_time)) - 27000
-			console.log(`${zone}, ${time_x}`, balanced_time )
-			SET_nextCountdown(dayjs.unix(balanced_time).format('HH:mm:ss').split(':'))
-		}
-	},[nextDaySubuh])
 
 	return (
 		<div className="container">
@@ -176,6 +164,7 @@ export default function Home() {
 			<div className="wrapper">
 				<div className="bg-image"></div>
 				<h1>Waktu Solat</h1>
+				<input type="button" onClick={() => calc_next_waktu_solat() }></input>
 
 				{
 					changeZonePopup &&
@@ -216,7 +205,7 @@ export default function Home() {
 						<div className="datetime">
 							<p>pada jam</p>
 							<h1>{ dayjs.unix(nextSolatTime).format('h:mm a')}</h1>
-							<h2>{dayjs().locale('ms-my').format('dddd, D MMMM YYYY')}</h2>
+							<h2>{ nextDayDate ? dayjs(nextDayDate).locale('ms-my').format('dddd, D MMMM YYYY') : dayjs().locale('ms-my').format('dddd, D MMMM YYYY') }</h2>
 						</div>
 						<div className="countdown">
 							<p>dalam masa</p>
