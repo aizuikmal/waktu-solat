@@ -15,6 +15,7 @@
     "next": "9.5.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-ga": "^3.1.2",
     "set-interval": "^2.0.4",
     "unfetch": "^4.1.0",
     "universal-cookie": "^4.0.3"
