@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rochester&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rosarivo&display=swap');
+
+html { background-color:#000; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
+#__next-prerender-indicator { display: none; }
+
+* { box-sizing: border-box; }
+
+body { font-family: 'Rosarivo', sans-serif; color:#FFF; margin:0px; text-align:center; }
+
+h1 { margin:0px; }
+h2 { margin:0px; }
+h3 { margin:0px; }
+p { margin:0px; }
+a { color:#FFF; }
+
+.container { background:#000; height:100vh;}
+.container .wrapper { max-width:500px; margin:0 auto; }
+.container .wrapper > h1 { font-family:'Rochester'; font-size:40px; padding:70px 0px 70px 0px; }
+
+.change_popup { background-color:rgba(0,0,0,0.7); padding:20px 0px;}
+.change_popup h1 { margin-bottom:20px;}
+.change_popup select { display:block; margin:0 auto; font-size:20px; width:400px; margin-bottom:20px;}
+.change_popup a { color:#000; cursor: pointer; display:inline-block; background-color:#FFF; padding:4px 20px 2px 20px; font-size:11px; margin-top:10px; border-radius:10px;}
+.change_popup a:hover { background-color:#333; color:#FFF; }
+
+.change-theme { position: absolute; right:10px; top:10px;}
+
+.main {}
+
+.main .waktu { background-color:rgba(0,0,0,0.7); padding:20px 0px; }
+.main p {}
+.main .waktu h1 { text-transform:capitalize; font-size:58px; font-weight:300; }
+.main .waktu h2 { font-size:20px;}
+.main .waktu a { cursor: pointer; color:#000; display:inline-block; background-color:#FFF; padding:4px 20px 2px 20px; font-size:11px; margin-top:10px; border-radius:10px;}
+.main .waktu a:hover { background-color:#333; color:#FFF; }
+
+.main .datetime { background-color:rgba(0,0,0,0.9); padding:20px 0px; }
+.main .datetime h1 { padding:10px 0px; font-size:36px; font-family:'Roboto', sans-serif; font-weight:300;}
+.main .datetime h2 { font-size:15px;}
+
+.main .countdown { background-color:rgba(0,0,0,0.8); padding:20px 0px;}
+.main .countdown p {}
+.main .countdown h2 {}
+.main .countdown h1 { display:flex; margin:0 auto; justify-content:center; }
+.main .countdown h1 div { width:140px; }
+.main .countdown h1 span { font-size:50px;}
+.main .countdown h1 label { font-size:16px; margin-right:20px; }
+
+.credit { width:300px; margin:0 auto; margin-top:50px; background-color:rgba(0,0,0,0.8); padding:20px 0px; border-radius:10px;}
+.credit .esolat {}
+.credit .esolat h1 { font-size:12px; }
+.credit .esolat h2 { cursor:pointer; }
+
+.timetable { width:300px; margin:0 auto; margin-top:20px; margin-bottom:50px; background-color:rgba(0,0,0,1); padding:30px 0px; border-radius:10px; box-shadow: 0 19px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.12);}
+.timetable h1 { font-size:20px; }
+.timetable h2 { font-size:20px; }
+.timetable .listing { width:150px; margin:0 auto; margin-top:20px;}
+.timetable .listing .item { display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #EEE; padding-bottom:10px;}
+.timetable .listing .item label {}
+.timetable .listing .item span { font-family:'Roboto', sans-serif; font-weight:300;}
+
+.footer { margin-bottom:30px; font-size:11px;}
+
+
+
+
+
+
+

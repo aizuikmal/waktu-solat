@@ -3,8 +3,6 @@ import Router, { useRouter } from 'next/router'
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 
-import '../styles.css'
-
 import axios from 'axios'
 import Cookies from 'universal-cookie';
 const cookies = new Cookies()
