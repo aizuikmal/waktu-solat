@@ -10,10 +10,13 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "dayjs": "^1.8.35",
     "moment": "^2.27.0",
     "next": "9.5.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "set-interval": "^2.0.4",
+    "unfetch": "^4.1.0",
     "universal-cookie": "^4.0.3"
   }
 }

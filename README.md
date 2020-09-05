@@ -8,7 +8,8 @@ Objective:
 - Can run without dependant on other services/API
 - Can run for whole year without breaking (need data for whole year)
 - Source, *MUST* coming from JAKIM's e-solat
-- No momentjs package on production. Size too big. Have to endure JS date parsing. (except on preparing data)
+- Use dayjs instead of momentjs
+- use unfetch package (500 bytes ?)
 
 Data folder structure:
 /data/2020/WLY02/20200905.json
@@ -18,3 +19,7 @@ Data will be prepared in advanced by developer.
 Steps to run on static hosting / S3:
 1. Copy over the files in "out" folder.
 2. that's it.
+
+
+Ref:
+- https://day.js.org/docs/en/installation/installation
