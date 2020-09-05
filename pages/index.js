@@ -128,7 +128,7 @@ export default function Home() {
 			</Head>
 
 			<div className="wrapper">
-
+				<div className="bg-image"></div>
 				<h1>Waktu Solat</h1>
 
 				{

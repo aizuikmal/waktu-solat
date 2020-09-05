@@ -15,13 +15,14 @@ h2 { margin:0px; }
 h3 { margin:0px; }
 p { margin:0px; }
 
-.container { background:#FFF url('/bg-default.png'); background-size:cover; height:100vh;}
+.container {}
+.container .bg-image { position:fixed; z-index:-1; background:#FFF url('/bg-default.png'); background-size:cover; width:100%; height:100vh;}
 .container .wrapper { max-width:500px; margin:0 auto; }
 .container .wrapper > h1 { font-family:'Rochester'; font-size:40px; padding:70px 0px 70px 0px; }
 
 .change_popup { background-color:rgba(255,255,255,0.7); padding:20px 0px;}
 .change_popup h1 { margin-bottom:20px;}
-.change_popup select { display:block; margin:0 auto; font-size:20px; width:400px; margin-bottom:20px;}
+.change_popup select { display:block; margin:0 auto; font-size:20px; width:300px; margin-bottom:20px;}
 .change_popup a { cursor: pointer; display:inline-block; background-color:#FFF; padding:4px 20px 2px 20px; font-size:11px; margin-top:10px; border-radius:10px;}
 .change_popup a:hover { background-color:#333; color:#FFF; }
 
@@ -48,7 +49,7 @@ p { margin:0px; }
 .main .countdown h1 span { font-size:50px;}
 .main .countdown h1 label { font-size:16px; margin-right:20px; }
 
-.credit { width:300px; margin:0 auto; margin-top:50px; background-color:rgba(255,255,255,0.8); padding:20px 0px; border-radius:10px;}
+.credit { width:300px; margin:0 auto; margin-top:50px; background-color:rgba(255,255,255,1); padding:20px 0px; border-radius:10px;box-shadow: 0 19px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.12);}
 .credit .esolat {}
 .credit .esolat h1 { font-size:12px; }
 .credit .esolat h2 { cursor:pointer; }
@@ -61,7 +62,7 @@ p { margin:0px; }
 .timetable .listing .item label {}
 .timetable .listing .item span { font-family:'Roboto', sans-serif; font-weight:300;}
 
-.footer { margin-bottom:30px; font-size:11px;}
+.footer { margin-bottom:30px; font-size:11px; padding:0px 30px;}
 
 
 
