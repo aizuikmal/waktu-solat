@@ -136,7 +136,7 @@ export default function Home() {
 					<div className="credit">
 						<div className="esolat">
 							<h1>Waktu solat dari laman rasmi</h1>
-							<h2>www.e-solat.gov.my</h2>
+							<h2 onClick={() => window.location='https://www.e-solat.gov.my' }>www.e-solat.gov.my</h2>
 						</div>
 					</div>
 
@@ -154,6 +154,10 @@ export default function Home() {
 							<div className="item"><label>Maghrib</label><span>{ dayjs(`1 Jan 2000 ${waktuSolatAll.maghrib}`).format('h:mm a') }</span></div>
 							<div className="item"><label>Isyak</label><span>{ dayjs(`1 Jan 2000 ${waktuSolatAll.isha}`).format('h:mm a') }</span></div>
 						</div>
+					</div>
+					<div className="footer">
+						Sumber laman ini boleh didapati dari sini.<br />Hakcipta data dari laman rasmi www.esolat.gov.my.<br />
+						Pihak kami berusaha untuk memastikan data yang dipaparkan adalah sama seperti laman rasmi E-solat, walaubagaimanapun, ralat data adalah diluar kemampuan jangkaan kami.
 					</div>
 					</>
 				}

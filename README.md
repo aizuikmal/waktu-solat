@@ -22,4 +22,7 @@ Steps to run on static hosting / S3:
 
 
 Ref:
-- https://day.js.org/docs/en/installation/installation
+- https://www.npmjs.com/package/unfetch
+- https://www.npmjs.com/package/dayjs
+- https://smartmockups.com/
+- https://codepen.io/sdthornton/pen/wBZdXq //Material Design Box Shadows
