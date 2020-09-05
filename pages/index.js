@@ -164,7 +164,6 @@ export default function Home() {
 			<div className="wrapper">
 				<div className="bg-image"></div>
 				<h1>Waktu Solat</h1>
-				<input type="button" onClick={() => calc_next_waktu_solat() }></input>
 
 				{
 					changeZonePopup &&
