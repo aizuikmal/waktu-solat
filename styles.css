@@ -43,7 +43,7 @@ p { margin:0px; }
 .main .countdown h2 {}
 .main .countdown h1 { display:flex; margin:0 auto; justify-content:center; }
 .main .countdown h1 div { width:140px; }
-.main .countdown h1 span { font-size:55px;}
+.main .countdown h1 span { font-size:50px;}
 .main .countdown h1 label { font-size:16px; margin-right:20px; }
 
 .credit { width:300px; margin:0 auto; margin-top:50px; background-color:rgba(255,255,255,0.8); padding:20px 0px; border-radius:10px;}
