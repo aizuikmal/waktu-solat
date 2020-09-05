@@ -75,8 +75,7 @@ export default function Home() {
 	}
 
 	useEffect(() => {
-		const cookie_zone = cookies.get('_waktusolat_aizu_my_zone', { path: '/' })
-		console.log('cookie_zone',cookie_zone)
+		const cookie_zone = cookies.get('_waktusolat_aizu_my_zone', { path: '/' }) ?? 'WLY01'
 		SET_zone(cookie_zone)
 		fetch_ws(cookie_zone)
 	},[])
