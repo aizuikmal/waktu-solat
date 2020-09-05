@@ -66,7 +66,7 @@ export default function Home() {
 		const resp = await fetch(loc)
 		const ws_raw = await resp.json()
 		SET_waktuSolatAll(ws_raw)
-		console.log(loc,ws_raw)
+		//console.log(loc,ws_raw)
 	}
 
 	const calc_next_waktu_solat = useMutableCallback(async () => {
@@ -79,10 +79,10 @@ export default function Home() {
 			let nextDaySubuh_buf = false
 			if(!nextDaySubuh){
 				const loc = `data/timetable/${dayjs().format('YYYY')}/${zone}/${dayjs().add(1,'days').format('YYYY-MM-DD')}.json`
-				console.log('fetch',loc)
+				//console.log('fetch',loc)
 				const resp = await fetch(loc)
 				const ws_raw = await resp.json()
-				console.log(loc,ws_raw)
+				//console.log(loc,ws_raw)
 				SET_nextDaySubuh(ws_raw.fajr)
 				nextDaySubuh_buf = ws_raw.fajr
 				SET_nextDayDate(dayjs().add(1,'days').format('YYYY-MM-DD'))
@@ -95,7 +95,7 @@ export default function Home() {
 			SET_nextSolatName('fajr')
 			SET_nextSolatTime(time_x_subuh)
 			let balanced_time = (parseInt(time_x_subuh - current_time)) - 27000
-			console.log(`${zone}, ${time_x_subuh}`, balanced_time )
+			//console.log(`${zone}, ${time_x_subuh}`, balanced_time )
 			SET_nextCountdown(dayjs.unix(balanced_time).format('HH:mm:ss').split(':'))
 
 		}else{
@@ -108,7 +108,7 @@ export default function Home() {
 					SET_nextSolatName(item)
 					SET_nextSolatTime(time_x)
 					let balanced_time = (parseInt(time_x - current_time)) - 27000
-					console.log(`${zone}, ${time_x}`, balanced_time )
+					//console.log(`${zone}, ${time_x}`, balanced_time )
 					SET_nextCountdown(dayjs.unix(balanced_time).format('HH:mm:ss').split(':'))
 					break
 				}
@@ -121,7 +121,7 @@ export default function Home() {
 	useEffect(() => {
 
 		const cookie_style = cookies.get('_waktusolat_aizu_my_style', { path: '/' })
-		console.log('cookie_style',cookie_style)
+		//console.log('cookie_style',cookie_style)
 		if(cookie_style){ SET_styleFile(cookie_style) }
 
 		const cookie_zone = cookies.get('_waktusolat_aizu_my_zone', { path: '/' }) ?? 'WLY01'
