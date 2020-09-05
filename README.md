@@ -25,7 +25,7 @@ Steps to run on static hosting / S3:
 Ref:
 - https://www.npmjs.com/package/unfetch
 - https://www.npmjs.com/package/dayjs
-- https://www.npmjs.com/package/react-use-mutable (I don't know what is mutable)
+- https://www.npmjs.com/package/react-use-mutable (There’s nothing wrong with mutating objects - https://blog.logrocket.com/immutability-in-react-ebe55253a1cc/)
 - https://github.com/react-ga/react-ga
 - https://www.favicon-generator.org/
 - https://smartmockups.com/
