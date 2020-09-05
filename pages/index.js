@@ -161,8 +161,9 @@ export default function Home() {
 				<link rel="stylesheet" href={`styles/${styleFile}.css`} />
 			</Head>
 
+			<>
+			<div className="bg-image"></div>
 			<div className="wrapper">
-				<div className="bg-image"></div>
 				<h1>Waktu Solat</h1>
 
 				{
@@ -246,6 +247,7 @@ export default function Home() {
 				}
 
 			</div>
+			</>
 
 		</div>
 	)
