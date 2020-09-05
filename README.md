@@ -14,3 +14,7 @@ Data folder structure:
 /data/2020/WLY02/20200905.json
 
 Data will be prepared in advanced by developer.
+
+Steps to run on static hosting / S3:
+1. Copy over the files in "out" folder.
+2. that's it.
