@@ -12,14 +12,19 @@ Objective:
 - Use dayjs instead of momentjs
 - use unfetch package (small package compared to axios)
 
-Data folder structure:
-/data/2020/WLY02/20200905.json
+Data folder structure: /data/2020/WLY02/20200905.json
+Time zone: /data/zones.json
 
-Data will be prepared in advanced by me.
+Data will be prepared in advanced by me on yearly basis.
 
 Steps to run on static hosting / S3:
 1. Copy over the files in "out" folder.
 2. that's it.
+
+To Do
+- [on mobile browser] Do not sleep display on inactive
+	- https://github.com/GoogleChrome/samples/tree/gh-pages/battery-status
+	- https://github.com/richtr/NoSleep.js
 
 
 Ref:
