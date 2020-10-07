@@ -103,7 +103,7 @@ export default function Home() {
 			SET_nextSolatTime(time_x_subuh)
 			let balanced_time = (parseInt(time_x_subuh - current_time)) - 27000
 			//console.log(`${zone}, ${time_x_subuh}`, balanced_time )
-			SET_nextCountdown(dayjs.unix(balanced_time).format('HH:mm:ss').split(':'))
+			SET_nextCountdown(dayjs.unix(balanced_time).tz("Asia/Kuala_Lumpur").format('HH:mm:ss').split(':'))
 
 		}else{
 				
