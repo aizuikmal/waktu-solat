@@ -18,6 +18,16 @@ dayjs.extend(advancedFormat)
 const relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 
+const LocalizedFormat = require('dayjs/plugin/LocalizedFormat')
+dayjs.extend(LocalizedFormat)
+
+const utc = require('dayjs/plugin/utc')
+dayjs.extend(utc)
+
+const timezone = require('dayjs/plugin/timezone')
+dayjs.extend(timezone)
+
+
 const cookies = new Cookies()
 
 const waktuTranslate = {
@@ -109,7 +119,8 @@ export default function Home() {
 					SET_nextSolatTime(time_x)
 					let balanced_time = (parseInt(time_x - current_time)) - 27000
 					//console.log(`${zone}, ${time_x}`, balanced_time )
-					SET_nextCountdown(dayjs.unix(balanced_time).format('HH:mm:ss').split(':'))
+					// console.log(0,dayjs.unix(0).tz("Asia/Kuala_Lumpur").format('LLL'))
+					SET_nextCountdown(dayjs.unix(balanced_time).tz("Asia/Kuala_Lumpur").format('HH:mm:ss').split(':'))
 					break
 				}
 			}
