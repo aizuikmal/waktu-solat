@@ -18,9 +18,6 @@ dayjs.extend(advancedFormat)
 const relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 
-const LocalizedFormat = require('dayjs/plugin/LocalizedFormat')
-dayjs.extend(LocalizedFormat)
-
 const utc = require('dayjs/plugin/utc')
 dayjs.extend(utc)
 
